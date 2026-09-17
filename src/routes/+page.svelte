@@ -166,7 +166,7 @@
 <main class="min-h-[calc(100dvh-var(--app-header-height))] bg-white">
 	<!-- Primary upload workflow -->
 	<section
-		class="mx-auto w-full max-w-[644px] px-[14.6px] pt-[66px] text-center"
+		class="mx-auto w-full max-w-[644px] px-[14.6px] pt-[60px] text-center"
 		aria-labelledby="home-upload-title"
 	>
 		<h1
@@ -227,7 +227,7 @@
 
 	<!-- Supporting cards -->
 	<section
-		class="mx-auto mt-[99px] w-full max-w-[1300px] px-[24px] pb-[80px] sm:px-[32px]"
+		class="mx-auto mt-[111px] w-full max-w-[1300px] px-[24px] pb-[80px] sm:px-[32px]"
 		aria-label="Helpful resources"
 	>
 		<div class="flex flex-col gap-[20px] md:flex-row md:justify-between md:gap-[80px]">
