@@ -1,6 +1,4 @@
-<script lang="ts">
-	import CloudArrowUpIcon from 'phosphor-svelte/lib/CloudArrowUpIcon';
-
+<script module lang="ts">
 	type Card = {
 		title: string;
 		description: string;
@@ -19,11 +17,31 @@
 		{
 			title: 'Redlined contract',
 			description:
-				"Upload a redlined contract if the buyer made edits or comments directly in the document.",
+				'Upload a redlined contract if the buyer made edits or comments directly in the document.',
 			illustration: 'layers',
 			width: '480px'
 		}
 	] satisfies Card[];
+</script>
+
+<script lang="ts">
+	import { preloadData } from '$app/navigation';
+	import { resolve } from '$app/paths';
+	import { onMount } from 'svelte';
+	import CloudArrowUpIcon from 'phosphor-svelte/lib/CloudArrowUpIcon';
+	import InfoIcon from 'phosphor-svelte/lib/InfoIcon';
+
+	import UploadGuideModal from '$lib/components/home/UploadGuideModal.svelte';
+
+	let uploadGuideVisible = $state(false);
+
+	onMount(() => {
+		const id = setTimeout(() => {
+			void preloadData(resolve('/contract'));
+		}, 300);
+
+		return () => clearTimeout(id);
+	});
 </script>
 
 <svelte:head>
@@ -179,7 +197,8 @@
 		<p
 			class="mx-auto mt-[13px] max-w-[438px] text-[16px] leading-[1.42] text-[#35294d]"
 		>
-			We’ll show you what you can accept, what needs approval, and how to respond to anything we can’t accept.
+			We’ll show you what you can accept, what needs approval, and how to respond to anything we
+			can’t accept.
 		</p>
 
 		<label
@@ -211,7 +230,7 @@
 
 			<div class="relative -translate-y-[8px] flex flex-col items-center">
 				<CloudArrowUpIcon
-					class="text-accent size-[33px] shrink-0 transition-[color,filter] group-hover:brightness-90 group-focus-within:brightness-90"
+					class="text-accent size-[35px] shrink-0 transition-[color,filter] group-hover:brightness-90 group-focus-within:brightness-90"
 					weight="regular"
 					aria-hidden="true"
 				/>
@@ -223,11 +242,26 @@
 				</span>
 			</div>
 		</label>
+
+		<!-- Tool instructions trigger -->
+		<button
+			type="button"
+			class="text-brand-muted hover:text-accent focus-visible:ring-accent mx-auto mt-[14px] flex items-center gap-[7px] rounded-[6px] px-[4px] py-[3px] text-[14px] leading-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+			onclick={() => (uploadGuideVisible = true)}
+		>
+			<InfoIcon
+				class="size-[18px] shrink-0"
+				weight="regular"
+				aria-hidden="true"
+			/>
+
+			<span>How to upload and what happens next</span>
+		</button>
 	</section>
 
 	<!-- Supporting cards -->
 	<section
-		class="mx-auto mt-[111px] w-full max-w-[1300px] px-[24px] pb-[80px] sm:px-[32px]"
+		class="mx-auto mt-[73px] w-full max-w-[1300px] px-[24px] pb-[80px] sm:px-[32px]"
 		aria-label="Helpful resources"
 	>
 		<div class="flex flex-col gap-[20px] md:flex-row md:justify-between md:gap-[80px]">
@@ -237,3 +271,7 @@
 		</div>
 	</section>
 </main>
+
+{#if uploadGuideVisible}
+	<UploadGuideModal onClose={() => (uploadGuideVisible = false)} />
+{/if}

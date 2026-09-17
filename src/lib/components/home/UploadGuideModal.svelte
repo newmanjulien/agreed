@@ -4,58 +4,51 @@
 	let { onClose }: { onClose: () => void } = $props();
 </script>
 
-<FullHeightModalShell title="Set up your contract" {onClose}>
+<FullHeightModalShell title="How to use Agreed" {onClose}>
 	<div class="space-y-6 pt-1">
 		<p class="text-[15px] leading-[1.45] text-ink-muted">
-			Define the rules and guidance reps should follow when handling buyer-requested changes.
+			We’ll help you negotiate contract changes and keep the deal moving. Start by uploading what the buyer sent.
 		</p>
 
-		<ol class="startup-steps" role="list">
-		<li class="startup-step">
-				<span class="startup-step-number" aria-hidden="true">1</span>
+		<ol class="upload-steps" role="list">
+			<li class="upload-step">
+				<span class="upload-step-number" aria-hidden="true">1</span>
 
 				<div class="pb-7">
 					<h3 class="text-[15px] leading-tight font-medium text-ink">
-						Highlight clauses
+						Upload the buyer’s changes
 					</h3>
 
 					<p class="mt-1.5 text-[15px] leading-[1.45] text-ink-muted">
-						Set detailed rules and instructions for each clause by
-						<span class="selection-highlight">selecting the text.</span>
+						Upload a screenshot, recording, or redlined contract showing the changes they requested.
 					</p>
 				</div>
 			</li>
 
-			<li class="startup-step">
-				<span class="startup-step-number" aria-hidden="true">2</span>
+			<li class="upload-step">
+				<span class="upload-step-number" aria-hidden="true">2</span>
 
 				<div class="pb-7">
 					<h3 class="text-[15px] leading-tight font-medium text-ink">
-						Mark what’s flexible
+						Get a recommended response
 					</h3>
 
 					<p class="mt-1.5 text-[15px] leading-[1.45] text-ink-muted">
-						<span class="clause-highlight bg-clause-editable-highlight">
-							Green clauses are flexible.
-						</span>
-						Define which alternatives reps can offer or accept.
+						See what you can accept, what needs approval, and how to respond to changes we can’t accept.
 					</p>
 				</div>
 			</li>
 
-			<li class="startup-step">
-				<span class="startup-step-number" aria-hidden="true">3</span>
+			<li class="upload-step">
+				<span class="upload-step-number" aria-hidden="true">3</span>
 
 				<div>
 					<h3 class="text-[15px] leading-tight font-medium text-ink">
-						Mark what’s fixed
+						Escalate with one click
 					</h3>
 
 					<p class="mt-1.5 text-[15px] leading-[1.45] text-ink-muted">
-						<span class="clause-highlight bg-clause-informational-highlight">
-							Grey clauses are not flexible.
-						</span>
-						Give reps practical guidance for handling buyer objections.
+						Get the right people involved, keep things moving, and close the deal faster.
 					</p>
 				</div>
 			</li>
@@ -64,20 +57,20 @@
 </FullHeightModalShell>
 
 <style>
-	.startup-steps {
+	.upload-steps {
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
-	.startup-step {
+	.upload-step {
 		position: relative;
 		display: grid;
 		grid-template-columns: 2rem 1fr;
 		column-gap: 0.75rem;
 	}
 
-	.startup-step-number {
+	.upload-step-number {
 		z-index: 1;
 		display: flex;
 		width: 2rem;
@@ -92,7 +85,7 @@
 		line-height: 1;
 	}
 
-	.startup-step:not(:last-child)::after {
+	.upload-step:not(:last-child)::after {
 		position: absolute;
 		top: 2rem;
 		bottom: 0;
@@ -100,16 +93,5 @@
 		width: 1px;
 		background: var(--color-line);
 		content: '';
-	}
-
-	.clause-highlight {
-		border-radius: 3px;
-		box-decoration-break: clone;
-		-webkit-box-decoration-break: clone;
-	}
-
-	.selection-highlight {
-		background: var(--color-selection-highlight);
-		color: inherit;
 	}
 </style>
