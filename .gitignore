@@ -1,0 +1,8 @@
+node_modules
+.svelte-kit
+build
+.vercel
+playwright-report
+test-results
+browser-temp
+.DS_Store

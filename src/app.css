@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Arial, Helvetica, sans-serif;
+
+  --color-canvas: #f1f3f4;
+  --color-surface: #ffffff;
+
+  --color-document-ink: #171717;
+  --color-ink: #202124;
+  --color-ink-secondary: #3c4043;
+  --color-ink-muted: #5f6368;
+  --color-ink-subtle: #777b80;
+
+  --color-line: #dadce0;
+  --color-line-strong: #9aa0a6;
+
+  --color-hover: #e3e6e8;
+  --color-hover-subtle: #e8eaed;
+
+  --color-surface-subtle: #f8f9fa;
+
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-accent-strong: #1e40af;
+
+  --color-brand-muted: #756d84;
+  --color-brand-stroke: #625a70;
+
+  /*
+	 * Text selection / comment blue
+   *
+	 * Normal selection + existing comment = light blue
+   * Hover = darker blue
+   */
+  --color-selection-highlight: #d2e3fc;
+  --color-selection-highlight-hover: #b7d0fa;
+
+  /*
+   * Clause highlights
+   *
+   * Informational and inactive/crossed-out clauses intentionally
+   * share the same neutral grey palette.
+   */
+  --color-clause-neutral-highlight: rgba(95, 99, 104, 0.1);
+  --color-clause-neutral-highlight-hover: rgba(95, 99, 104, 0.14);
+  --color-clause-neutral-highlight-selected: rgba(95, 99, 104, 0.18);
+
+  --color-clause-informational-highlight: var(--color-clause-neutral-highlight);
+
+  /*
+   * Editable clauses
+   */
+  --color-clause-editable-highlight: rgba(34, 197, 94, 0.16);
+  --color-clause-editable-highlight-hover: rgba(34, 197, 94, 0.22);
+  --color-clause-editable-highlight-selected: rgba(34, 197, 94, 0.28);
+
+  /* Proposed wording */
+  --color-proposed-highlight: rgba(250, 204, 21, 0.38);
+  --color-proposed-highlight-hover: rgba(250, 204, 21, 0.5);
+  --color-proposed-highlight-selected: rgba(250, 204, 21, 0.62);
+
+  --color-disabled: #80868b;
+  --color-disabled-line: #c4c7c5;
+
+  --color-danger: #b3261e;
+
+  --radius-control: 14px;
+  --radius-field: 14px;
+  --radius-panel: 12px;
+  --radius-popover: 11px;
+  --radius-sm: 6px;
+  --radius-utility-panel: 14px;
+  --radius-widget: 14px;
+}
+
+:root {
+  --app-header-height: 36px;
+  --document-viewport-gap: 16px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --app-header-height: 44px;
+  }
+}

@@ -1,0 +1,294 @@
+.document-page {
+  position: relative;
+  width: var(--contract-page-width);
+  height: var(--contract-page-height);
+  padding: var(--contract-page-top-padding)
+    var(--contract-page-horizontal-padding)
+    var(--contract-page-bottom-padding);
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  outline: 1px solid var(--color-line);
+  outline-offset: -1px;
+  background: var(--color-surface);
+  box-shadow: none;
+}
+
+.document-page__number {
+  position: absolute;
+  right: 48px;
+  bottom: 32px;
+  font-size: 15px;
+  line-height: 1;
+  color: #a3a3a3;
+}
+
+.document-page.first-page {
+  padding-top: var(--contract-first-page-top-padding);
+}
+
+.document-page__content,
+.measurement-surface {
+  width: var(--contract-content-width);
+}
+
+.contract-document {
+  --inactive-clause-background: var(--color-clause-neutral-highlight);
+  --inactive-clause-hover-background: var(
+    --color-clause-neutral-highlight-hover
+  );
+  --inactive-clause-selected-background: var(
+    --color-clause-neutral-highlight-selected
+  );
+
+  --inactive-clause-text-color: var(--color-ink-muted);
+  --inactive-clause-text-decoration: line-through;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-document-ink);
+
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.contract-document ::selection {
+  background: var(--color-selection-highlight);
+  color: inherit;
+}
+
+.contract-document,
+.contract-document *,
+.contract-document *::before,
+.contract-document *::after {
+  box-sizing: border-box;
+}
+
+/*
+ * Informational clause
+ *
+ * Informational clauses use the same neutral grey palette
+ * as inactive/crossed-out clauses.
+ */
+.contract-clause {
+  --clause-highlight-background: var(--color-clause-neutral-highlight);
+  --clause-hover-background: var(--color-clause-neutral-highlight-hover);
+  --clause-selected-background: var(--color-clause-neutral-highlight-selected);
+
+  cursor: pointer;
+  border-radius: 3px;
+  background: var(--clause-highlight-background);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-color 120ms ease;
+}
+
+/*
+ * Editable clause
+ */
+.contract-clause[data-clause-highlight-tone="editable"] {
+  --clause-highlight-background: var(--color-clause-editable-highlight);
+  --clause-hover-background: var(--color-clause-editable-highlight-hover);
+  --clause-selected-background: var(--color-clause-editable-highlight-selected);
+}
+
+/*
+ * Inactive / crossed-out clause
+ *
+ * Uses the same neutral grey base, hover, and selected palette
+ * as informational clauses.
+ */
+.contract-clause[data-revision-state="inactive"] {
+  --clause-highlight-background: var(--color-clause-neutral-highlight);
+  --clause-hover-background: var(--color-clause-neutral-highlight-hover);
+  --clause-selected-background: var(--color-clause-neutral-highlight-selected);
+
+  color: var(--inactive-clause-text-color);
+  text-decoration: var(--inactive-clause-text-decoration);
+}
+
+.contract-proposal {
+  cursor: pointer;
+  border-radius: 3px;
+  background: var(--color-proposed-highlight);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-color 120ms ease;
+}
+
+.contract-proposal:hover {
+  background: var(--color-proposed-highlight-hover);
+}
+
+.contract-proposal[aria-pressed="true"] {
+  background: var(--color-proposed-highlight-selected);
+}
+
+.contract-proposal:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.contract-clause.is-clause-reference-target {
+  position: relative;
+}
+
+.contract-clause:hover {
+  background: var(--clause-hover-background);
+}
+
+.contract-clause[aria-pressed="true"] {
+  background: var(--clause-selected-background);
+}
+
+.contract-clause:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contract-clause,
+  .contract-proposal {
+    transition: none;
+  }
+}
+
+/*
+ * Search highlights
+ */
+::highlight(agreed-search-matches) {
+  background: rgba(250, 204, 21, 0.38);
+  color: inherit;
+}
+
+::highlight(agreed-search-active-match) {
+  background: rgba(249, 115, 22, 0.72);
+  color: inherit;
+}
+
+/*
+ * Comment highlight
+ *
+ * Uses the same light blue as active text selection.
+ */
+::highlight(agreed-review-comment) {
+  background: var(--color-selection-highlight);
+  color: inherit;
+}
+
+/*
+ * Comment highlight hover
+ *
+ * Uses the darker blue hover state.
+ */
+::highlight(agreed-review-comment-hover) {
+  background: var(--color-selection-highlight-hover);
+  color: inherit;
+}
+
+/*
+ * Proposed-change draft
+ */
+::highlight(agreed-review-proposal-draft) {
+  background: var(--color-proposed-highlight);
+  color: inherit;
+  text-decoration: none;
+}
+
+.contract-flow {
+  display: flex;
+  flex-direction: column;
+}
+
+.contract-heading {
+  scroll-margin-top: calc(
+    var(--app-header-height) + var(--document-viewport-gap)
+  );
+}
+
+.contract-heading:focus {
+  outline: none;
+}
+
+.contract-document h1,
+.contract-document h2,
+.contract-document h3,
+.contract-document p {
+  flex: 0 0 auto;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.contract-document h1 {
+  margin-top: 0;
+  margin-bottom: 28px;
+  font-size: 27px;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+}
+
+.contract-document h2 {
+  margin-top: 34px;
+  margin-bottom: 18px;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.25px;
+}
+
+.contract-document h3 {
+  margin-top: 0;
+  margin-bottom: 26px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.contract-document p {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.46;
+}
+
+.contract-document .contract-paragraph:not(.is-final) {
+  margin-bottom: 0;
+}
+
+.contract-signatures {
+  margin-top: 48px;
+}
+
+.contract-signatures > h2 {
+  margin-top: 0;
+  margin-bottom: 26px;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 54px;
+  margin-top: 30px;
+}
+
+.signature-block p {
+  margin-bottom: 14px;
+  white-space: nowrap;
+}
+
+.signature-line {
+  display: inline-block;
+  width: 210px;
+  border-bottom: 1px solid var(--color-ink);
+  transform: translateY(-3px);
+}
+
+.field-value {
+  font-weight: 600;
+}
+
+.measurement-surface {
+  position: fixed;
+  top: 0;
+  left: -100000px;
+  height: auto;
+  visibility: hidden;
+  pointer-events: none;
+}
