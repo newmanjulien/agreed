@@ -58,7 +58,7 @@
 		<p
 			class="ml-auto flex shrink-0 items-center text-[14.5px] font-medium whitespace-nowrap text-[#261347]"
 		>
-			10 reviews left
+			10 deals left
 		</p>
 
 		<div

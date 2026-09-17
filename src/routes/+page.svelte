@@ -173,17 +173,17 @@
 			id="home-upload-title"
 			class="text-[22px] leading-[1.22] tracking-[-0.02em] text-[#302448]"
 		>
-			Upload the buyer's requested changes
+			Upload changes the buyer requested
 		</h1>
 
 		<p
 			class="mx-auto mt-[13px] max-w-[438px] text-[16px] leading-[1.42] text-[#35294d]"
 		>
-			We’ll show you what you can accept, what needs approval, and how to respond to anything you can’t accept.
+			We’ll show you what you can accept, what needs approval, and how to respond to anything we can’t accept.
 		</p>
 
 		<label
-			class="group focus-within:ring-accent relative mt-[30px] grid min-h-[283px] cursor-pointer place-items-center rounded-[16px] px-[29.2px] text-center transition-colors hover:bg-[#FCFCFD] focus-within:bg-[#FCFCFD] focus-within:ring-2 focus-within:ring-offset-2"
+			class="group focus-within:ring-accent relative mt-[30px] grid min-h-[283px] cursor-pointer place-items-center rounded-[16px] bg-[#FCFCFD] px-[29.2px] text-center transition-colors hover:bg-[#F7F6F9] focus-within:bg-[#F7F6F9] focus-within:ring-2 focus-within:ring-offset-2"
 		>
 			<svg
 				class="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
@@ -211,7 +211,7 @@
 
 			<div class="relative -translate-y-[8px] flex flex-col items-center">
 				<CloudArrowUpIcon
-					class="group-hover:text-accent group-focus-within:text-accent size-[33px] shrink-0 text-[#675E75] transition-colors"
+					class="text-accent size-[33px] shrink-0 transition-[color,filter] group-hover:brightness-90 group-focus-within:brightness-90"
 					weight="regular"
 					aria-hidden="true"
 				/>
