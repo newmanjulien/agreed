@@ -166,7 +166,7 @@
 <main class="min-h-[calc(100dvh-var(--app-header-height))] bg-white">
 	<!-- Primary upload workflow -->
 	<section
-		class="mx-auto w-full max-w-[644px] px-[14.6px] pt-[55px] text-center"
+		class="mx-auto w-full max-w-[644px] px-[14.6px] pt-[66px] text-center"
 		aria-labelledby="home-upload-title"
 	>
 		<h1

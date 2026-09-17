@@ -37,7 +37,7 @@
 			{#each navItems as item (item.href)}
 				{@const active = isActive(item.href)}
 				<a
-					class="relative mr-4 flex items-center px-2 text-[13.5px] leading-none transition-colors"
+					class="relative mr-4 flex items-center px-2 text-[14.5px] leading-none transition-colors"
 					class:text-[#2d2347]={active}
 					class:text-[#615875]={!active}
 					aria-current={active ? 'page' : undefined}
@@ -56,7 +56,7 @@
 		</nav>
 
 		<p
-			class="ml-auto flex shrink-0 items-center text-[13.5px] font-medium whitespace-nowrap text-[#261347]"
+			class="ml-auto flex shrink-0 items-center text-[14.5px] font-medium whitespace-nowrap text-[#261347]"
 		>
 			10 reviews left
 		</p>
