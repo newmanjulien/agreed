@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ContractApp from '$lib/components/contract/ContractApp.svelte';
-	import ContractSourceError from '$lib/components/contract/ContractSourceError.svelte';
+	import ContractApp from '$lib/contract/workspace/ContractApp.svelte';
+	import ContractSourceError from '$lib/contract/workspace/ContractSourceError.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();

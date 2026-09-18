@@ -1,15 +1,13 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { describe, it } from 'node:test';
-import JSZip from 'jszip';
-import { contractClauses } from '../src/lib/content/contract/clauses.ts';
+import { contractClauses } from '../src/lib/contract/content/clauses.ts';
 import type { ClauseRegistry } from '../src/lib/contract/model.ts';
 import {
-	createContractDocx,
-	DOCX_MIME_TYPE
-} from '../src/lib/document/export/docx/create-contract-docx.ts';
-import { resolveContract } from '../src/lib/contract/resolve.ts';
-import { compileContractSource } from '../src/lib/server/contract-source/compile-contract.ts';
+	resolveContract,
+	type ResolvedContractDocument
+} from '../src/lib/contract/resolve.ts';
+import { compileContractSource } from '../src/lib/server/contract/compile-contract.ts';
 
 const testClauses = {
 	intro: {
@@ -32,6 +30,18 @@ const testClauses = {
 const validSource = `<h1 id="test-contract">Test Contract</h1>
 <p><contract-clause id="intro">Text.</contract-clause></p>
 <contract-signatures provider="Provider" customer="Customer"></contract-signatures>`;
+
+function resolvedText(document: ResolvedContractDocument): string {
+	const parts: string[] = [];
+	for (const block of document.blocks) {
+		if (block.type === 'signature-grid') {
+			parts.push(block.title, ...block.parties.map((party) => party.name));
+			continue;
+		}
+		parts.push(block.content.map((node) => node.value).join(''));
+	}
+	return parts.join('\n');
+}
 
 describe('contract smoke tests', () => {
 	it('reports invalid markup and recovers in the same process', () => {
@@ -57,9 +67,9 @@ describe('contract smoke tests', () => {
 		assert.equal(compileContractSource(validSource, testClauses).ok, true);
 	});
 
-	it('compiles, resolves, and exports the current contract', async () => {
+	it('compiles and resolves the current contract', async () => {
 		const source = await readFile(
-			new URL('../src/lib/content/contract/document.html', import.meta.url),
+			new URL('../src/lib/contract/content/document.html', import.meta.url),
 			'utf8'
 		);
 		const result = compileContractSource(source, contractClauses);
@@ -74,18 +84,13 @@ describe('contract smoke tests', () => {
 		const snapshot = resolveContract(result.contract.document, result.contract.clauses, {
 			'research-introductions': { 'introducer-titles': 'coo-cro' }
 		});
-		const blob = await createContractDocx(snapshot);
-		const bytes = new Uint8Array(await blob.arrayBuffer());
-		const archive = await JSZip.loadAsync(bytes);
-		const documentXml = await archive.file('word/document.xml')?.async('string');
+		const text = resolvedText(snapshot);
 
-		assert.equal(blob.type, DOCX_MIME_TYPE);
 		assert.equal(snapshot.id, 'agreed-street-talk-contract');
-		assert.ok(documentXml);
-		assert.match(documentXml, /COO and CRO/u);
-		assert.doesNotMatch(documentXml, /CEO, COO, and CRO/u);
-		assert.match(documentXml, /SIGNATURES/u);
-		assert.match(documentXml, /AGREED/u);
-		assert.match(documentXml, /STREET TALK/u);
+		assert.match(text, /COO and CRO/u);
+		assert.doesNotMatch(text, /CEO, COO, and CRO/u);
+		assert.match(text, /SIGNATURES/u);
+		assert.match(text, /AGREED/u);
+		assert.match(text, /STREET TALK/u);
 	});
 });

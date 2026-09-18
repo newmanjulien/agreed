@@ -15,14 +15,7 @@ export interface ChangesDeactivateOption extends ChangesControlOptionBase {
 	documentLabel: string;
 }
 
-export interface ChangesCustomOption extends ChangesControlOptionBase {
-	kind: 'custom';
-}
-
-export type ChangesControlOption =
-	| ChangesValueOption
-	| ChangesDeactivateOption
-	| ChangesCustomOption;
+export type ChangesControlOption = ChangesValueOption | ChangesDeactivateOption;
 
 export interface ChangesControlDefinition {
 	id: string;

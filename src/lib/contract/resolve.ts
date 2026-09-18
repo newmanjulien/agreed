@@ -1,10 +1,4 @@
 import type { ContractControlValues } from './control-values.ts';
-import {
-	findClauseProposal,
-	type ContractProposal,
-	type ContractTextProposal
-} from './proposals.ts';
-import { applyTextReplacement } from './apply-text-replacement.ts';
 import type {
 	ChangesControlDefinition,
 	ChangesControlOption,
@@ -19,7 +13,7 @@ import type {
 	TextNode
 } from './types.ts';
 
-export type RevisionState = 'inactive' | 'proposed';
+export type RevisionState = 'inactive';
 
 export interface ResolvedContractDocument {
 	id: string;
@@ -33,7 +27,6 @@ export type ResolvedBlockNode =
 
 export interface ResolvedTextNode extends TextNode {
 	clauseId?: string;
-	proposalId?: string;
 	revisionState?: RevisionState;
 	source?: {
 		nodeIndex: number;
@@ -98,48 +91,21 @@ function resolveClauseValue(
 		return definition.defaultLabel;
 	}
 
-	const selectedOption = resolveSelectedControlOption(
-		clause.widget.control,
-		controlValues,
-		clauseId
-	);
-	return selectedOption.kind === 'custom'
-		? definition.defaultLabel
-		: selectedOption.documentLabel;
+	return resolveSelectedControlOption(clause.widget.control, controlValues, clauseId)
+		.documentLabel;
 }
 
 function resolveClause(
 	node: Extract<ParagraphContentNode, { type: 'clause' }>,
 	nodeIndex: number,
 	clauses: ClauseRegistry,
-	controlValues: Readonly<ContractControlValues>,
-	proposals: ReadonlyArray<ContractProposal>
+	controlValues: Readonly<ContractControlValues>
 ): ResolvedTextNode[] {
 	const clause = clauses[node.id];
 	const selectedOption =
 		clause?.widget.type === 'changes'
 			? resolveSelectedControlOption(clause.widget.control, controlValues, node.id)
 			: undefined;
-	const proposal =
-		selectedOption?.kind === 'custom'
-			? findClauseProposal(proposals, node.id)
-			: undefined;
-	if (selectedOption?.kind === 'custom' && !proposal) {
-		throw new Error(`Custom clause "${node.id}" is missing proposal text.`);
-	}
-
-	if (proposal) {
-		return [
-			{
-				type: 'text',
-				value: proposal.text,
-				clauseId: node.id,
-				proposalId: proposal.id,
-				revisionState: 'proposed',
-				source: { nodeIndex, start: 0, end: proposal.originalText.length }
-			}
-		];
-	}
 
 	const revisionState = selectedOption?.kind === 'deactivate' ? 'inactive' : undefined;
 	let offset = 0;
@@ -161,26 +127,12 @@ function resolveClause(
 	});
 }
 
-function compareTextProposalsDescending(
-	left: ContractTextProposal,
-	right: ContractTextProposal
-): number {
-	if (left.range.blockId !== right.range.blockId) {
-		return right.range.blockId.localeCompare(left.range.blockId, undefined, { numeric: true });
-	}
-	if (left.range.start.nodeIndex !== right.range.start.nodeIndex) {
-		return right.range.start.nodeIndex - left.range.start.nodeIndex;
-	}
-	return right.range.start.offset - left.range.start.offset;
-}
-
 export function resolveContract(
 	template: ContractDocument,
 	clauses: ClauseRegistry,
-	controlValues: Readonly<ContractControlValues>,
-	proposals: ReadonlyArray<ContractProposal> = []
+	controlValues: Readonly<ContractControlValues>
 ): ResolvedContractDocument {
-	const document: ResolvedContractDocument = {
+	return {
 		id: template.id,
 		blocks: template.blocks.map((block): ResolvedBlockNode => {
 			if (block.type === 'signature-grid') {
@@ -205,17 +157,11 @@ export function resolveContract(
 				content: block.content.flatMap((node, nodeIndex): ResolvedTextNode[] =>
 					node.type === 'text'
 						? [cloneText(node, nodeIndex)]
-						: resolveClause(node, nodeIndex, clauses, controlValues, proposals)
+						: resolveClause(node, nodeIndex, clauses, controlValues)
 				)
 			};
 		})
 	};
-
-	const textProposals = proposals
-		.filter((proposal): proposal is ContractTextProposal => proposal.kind === 'text')
-		.sort(compareTextProposalsDescending);
-	for (const proposal of textProposals) applyTextReplacement(document, proposal);
-	return document;
 }
 
 export function getContractTitle(

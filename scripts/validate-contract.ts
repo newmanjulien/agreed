@@ -1,8 +1,8 @@
 import { readFile } from 'node:fs/promises';
-import { contractClauses } from '../src/lib/content/contract/clauses.ts';
-import { compileContractSource } from '../src/lib/server/contract-source/compile-contract.ts';
+import { contractClauses } from '../src/lib/contract/content/clauses.ts';
+import { compileContractSource } from '../src/lib/server/contract/compile-contract.ts';
 
-const sourceUrl = new URL('../src/lib/content/contract/document.html', import.meta.url);
+const sourceUrl = new URL('../src/lib/contract/content/document.html', import.meta.url);
 const source = await readFile(sourceUrl, 'utf8');
 const result = compileContractSource(source, contractClauses);
 

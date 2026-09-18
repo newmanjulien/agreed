@@ -1,8 +1,8 @@
 import { dev } from '$app/environment';
 import type { ContractLoadResult } from '$lib/contract/source-result';
-import { contractClauses } from '$lib/content/contract/clauses';
-import contractSource from '$lib/content/contract/document.html?raw';
-import { compileContractSource } from '$lib/server/contract-source/compile-contract';
+import { contractClauses } from '$lib/contract/content/clauses';
+import contractSource from '$lib/contract/content/document.html?raw';
+import { compileContractSource } from '$lib/server/contract/compile-contract';
 import type { PageServerLoad } from './$types';
 
 export const load = (() => {

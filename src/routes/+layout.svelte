@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import '$lib/styles/print.css';
-	import AppHeader from '$lib/components/chrome/AppHeader.svelte';
+	import AppHeader from '$lib/chrome/AppHeader.svelte';
 
 	let { children } = $props();
 </script>
