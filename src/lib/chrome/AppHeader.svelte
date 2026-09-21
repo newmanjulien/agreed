@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { asset } from '$app/paths';
 	import { page } from '$app/state';
+	import { reviewSession } from '$lib/requests/review-session.svelte';
 
 	const navItems = [
 		{ label: 'Requests', href: '/', current: ['/', '/review', '/processing'] },
@@ -17,12 +18,11 @@
 		return routes.some((route) => pathMatches(path, route));
 	}
 
-	const CHANGE_POINTS_LEFT = 10;
 	const isReview = $derived(pathMatches(page.url.pathname, '/review'));
 </script>
 
 <header
-	class="sticky top-0 z-20 h-[var(--app-header-height)] border-b border-line bg-surface"
+	class="sticky top-0 z-20 h-[var(--app-header-height)] border-b border-line/60 bg-surface"
 >
 	<div class="flex h-full w-full items-stretch px-1.5 sm:px-2.5 md:px-4">
 		<a
@@ -35,7 +35,7 @@
 				alt=""
 				width="68"
 				height="122"
-				class="h-6 w-auto md:h-7"
+				class="h-5 w-auto md:h-6.5"
 			/>
 		</a>
 
@@ -64,11 +64,11 @@
 		<div class="my-auto ml-auto flex items-center gap-2.5 sm:gap-3">
 			{#if isReview}
 				<p
-					class="text-[12.5px] leading-none text-muted sm:text-[13.5px]"
+					class="text-[12px] leading-none text-muted sm:text-[13px]"
 					role="status"
-					aria-label="{CHANGE_POINTS_LEFT} points left"
+					aria-label="{reviewSession.pointsLeft} points left"
 				>
-					<span class="font-medium tabular-nums text-ink">{CHANGE_POINTS_LEFT}</span>
+					<span class="font-medium tabular-nums text-ink">{reviewSession.pointsLeft}</span>
 					<span class="max-[420px]:hidden"> points left</span>
 					<span class="min-[420px]:hidden"> left</span>
 				</p>

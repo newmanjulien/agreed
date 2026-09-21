@@ -17,7 +17,7 @@
   --color-accent: #2563eb;
   --color-accent-hover: #1d4ed8;
 
-  --color-danger: #b3261e;
+  --color-danger: #b3000e;
   --color-success: #22c55e;
 
   --color-selection: #d2e3fc;
@@ -35,7 +35,7 @@
 
 @media (min-width: 768px) {
   :root {
-    --app-header-height: 44px;
+    --app-header-height: 41px;
     --app-gutter: 32px;
   }
 }
