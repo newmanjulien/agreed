@@ -6,11 +6,13 @@
 	let {
 		title,
 		onClose,
+		placement = 'center',
 		children,
 		footer
 	}: {
 		title: string;
 		onClose: () => void;
+		placement?: 'center' | 'right';
 		children?: Snippet;
 		footer?: Snippet;
 	} = $props();
@@ -41,14 +43,20 @@
 
 <dialog
 	bind:this={dialogElement}
-	class="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-hidden border-0 bg-transparent p-4 text-ink outline-none backdrop:bg-canvas/70 max-[600px]:p-0"
+	class={[
+		'fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-hidden border-0 bg-transparent p-4 text-ink outline-none max-[600px]:p-0',
+		placement === 'right' ? 'backdrop:bg-transparent' : 'backdrop:bg-canvas/70'
+	]}
 	aria-labelledby={titleId}
 	tabindex="-1"
 	oncancel={handleCancel}
 	onclick={handleBackdropClick}
 >
 	<div
-		class="relative mx-auto flex h-full min-h-0 w-full max-w-[480px] flex-col overflow-hidden rounded-xl border border-line bg-surface shadow-none max-[600px]:rounded-none max-[600px]:border-0"
+		class={[
+			'relative flex h-full min-h-0 w-full max-w-[456px] flex-col overflow-hidden rounded-xl border border-line bg-surface shadow-[0_8px_24px_rgba(32,33,36,0.10)] max-[600px]:rounded-none max-[600px]:border-0',
+			placement === 'right' ? 'ml-auto' : 'mx-auto'
+		]}
 	>
 		<div class="absolute top-4 right-4 z-10">
 			<SquareIconButton type="button" aria-label="Close modal" onclick={closeModal}>

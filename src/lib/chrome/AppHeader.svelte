@@ -74,13 +74,13 @@
 				</p>
 			{/if}
 
-			<div
-				class="grid size-[30px] shrink-0 place-items-center rounded-full bg-selection text-[11.5px] font-medium text-accent"
-				role="img"
-				aria-label="User avatar"
-			>
-				JN
-			</div>
+			<img
+				src={asset('/oceanstalent_logo.jpeg')}
+				alt="Oceans Talent logo"
+				width="30"
+				height="30"
+				class="shrink-0 rounded-full"
+			/>
 		</div>
 	</div>
 </header>
