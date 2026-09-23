@@ -66,7 +66,7 @@
 		<span class="relative flex size-4 items-center justify-center">
 			<input
 				type="checkbox"
-				class="peer size-4 appearance-none rounded-sm border border-line checked:bg-muted"
+				class="peer size-4 appearance-none rounded-sm border border-line checked:bg-ink"
 			/>
 
 			<span
