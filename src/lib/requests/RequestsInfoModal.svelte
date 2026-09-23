@@ -12,8 +12,7 @@
 <FullHeightModalShell title="How reviewing works" {onClose}>
 	<div class="space-y-6 pt-1">
 		<p class="text-[14.5px] leading-[1.45] text-muted">
-			Each change is grouped by what you can do with it. You have 10 points
-			to accept changes.
+			You have 10 points to spend on changes. Some changes require approval, changes in red can’t be accepted
 		</p>
 
 		<ol class="m-0 list-none p-0" role="list">
@@ -22,11 +21,11 @@
 
 				<div class="pb-7">
 					<h3 class="text-[14.5px] leading-tight font-medium text-ink">
-						You have 10 points
+						Start with 10 points
 					</h3>
 
 					<p class="mt-1.5 text-[14.5px] leading-[1.45] text-muted">
-						This is your budget. Each accepted change spends some of it.
+						This is your review budget. Each change you accept uses some of your points.
 					</p>
 				</div>
 			</li>
@@ -36,33 +35,32 @@
 
 				<div class="pb-7">
 					<h3 class="text-[14.5px] leading-tight font-medium text-ink">
-						Spend points to accept changes
-					</h3>
-
-					<p class="mt-1.5 text-[14.5px] leading-[1.45] text-muted">
-						Spend them on requests that fit the contract rules. Accept buttons
-						show how many it costs.
-					</p>
-				</div>
-			</li>
-
-			<li class={stepClass}>
-				<span class={stepNumberClass} aria-hidden="true">3</span>
-
-				<div>
-					<h3 class="text-[14.5px] leading-tight font-medium text-ink">
 						Some changes you can’t accept
 					</h3>
 
 					<p class="mt-1.5 text-[14.5px] leading-[1.45] text-muted">
-						You need approval for some changes, and
-						<span class="text-danger">some can’t be accepted at all.</span>
+						Some changes need approval and 
+						<span class="text-danger">changes in red can’t be accepted at all.</span>
+					</p>
+				</div>
+			</li>
+
+					<li class={stepClass}>
+				<span class={stepNumberClass} aria-hidden="true">3</span>
+
+				<div>
+					<h3 class="text-[14.5px] leading-tight font-medium text-ink">
+						Download the updated contract
+					</h3>
+
+					<p class="mt-1.5 text-[14.5px] leading-[1.45] text-muted">
+						Download a .docx with all your accepted changes automatically applied.
 					</p>
 				</div>
 			</li>
 		</ol>
 
-		<label class="mt-6 flex items-center gap-2 text-[14px] text-ink">
+		<label class="mt-6 flex items-center gap-2">
 		<span class="relative flex size-4 items-center justify-center">
 			<input
 				type="checkbox"
@@ -76,7 +74,7 @@
 			</span>
 		</span>
 
-		<span>Don't show guide</span>
+		<span class="text-muted text-[14.5px]">Don't show guide</span>
 	</label>
 	</div>
 </FullHeightModalShell>

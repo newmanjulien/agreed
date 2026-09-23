@@ -17,7 +17,7 @@
 <button
 	bind:this={element}
 	{...buttonAttributes}
-	class="grid size-9 cursor-pointer place-items-center rounded-2xl border border-transparent bg-transparent p-0 text-muted shadow-none hover:bg-hover focus-visible:bg-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent aria-expanded:bg-hover aria-pressed:bg-accent aria-pressed:text-surface aria-pressed:hover:bg-accent-hover aria-pressed:focus-visible:bg-accent-hover disabled:cursor-default disabled:opacity-[0.36] disabled:hover:bg-transparent [&_svg]:pointer-events-none"
+	class="grid size-9 cursor-pointer place-items-center rounded-xl border border-transparent bg-transparent p-0 text-muted shadow-none hover:bg-hover focus-visible:bg-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent aria-expanded:bg-hover aria-pressed:bg-accent aria-pressed:text-surface aria-pressed:hover:bg-accent-hover aria-pressed:focus-visible:bg-accent-hover disabled:cursor-default disabled:opacity-[0.36] disabled:hover:bg-transparent [&_svg]:pointer-events-none"
 >
 	{@render children()}
 </button>
