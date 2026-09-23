@@ -61,5 +61,22 @@
 				</div>
 			</li>
 		</ol>
+
+		<label class="mt-6 flex items-center gap-2 text-[14px] text-ink">
+		<span class="relative flex size-4 items-center justify-center">
+			<input
+				type="checkbox"
+				class="peer size-4 appearance-none rounded-sm border border-line checked:bg-muted"
+			/>
+
+			<span
+				class="pointer-events-none absolute hidden text-[11px] leading-none text-white peer-checked:block"
+			>
+				✓
+			</span>
+		</span>
+
+		<span>Don't show guide</span>
+	</label>
 	</div>
 </FullHeightModalShell>

@@ -7,7 +7,7 @@
 	import { reviewSession } from './review-session.svelte';
 	import type { ChangeRequest, DiscussionGuide } from './types';
 
-	let infoModalOpen = $state(false);
+	let infoModalOpen = $state(true);
 	let discussionGuide = $state<DiscussionGuide | null>(null);
 
 	type ActionVariant = 'accept' | 'secondary' | 'remove';
