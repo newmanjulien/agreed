@@ -1,14 +1,27 @@
-export type ChangeRequestType =
-  | "Can accept"
-  | "Needs approval"
-  | "Can't accept";
+export type DiscussionItem = {
+  id: string;
+  prompt: string;
+  answer: string;
+};
 
-export type ChangeRequestAction = "Add" | "See more" | "Accept";
+export type DiscussionGuide = {
+  explanation: string;
+  questions: ReadonlyArray<DiscussionItem>;
+  context: ReadonlyArray<DiscussionItem>;
+};
 
-export type ChangeRequest = {
+type RequestBase = {
   id: string;
   requestedChange: string;
-  type: ChangeRequestType;
-  action: ChangeRequestAction;
-  points?: number;
 };
+
+export type AcceptRequest = RequestBase & { decision: 'canAccept'; points: number };
+export type CannotAcceptRequest = RequestBase & {
+  decision: 'cannotAccept';
+  discussionGuide: DiscussionGuide;
+};
+
+export type ChangeRequest =
+  | AcceptRequest
+  | CannotAcceptRequest
+  | (RequestBase & { decision: 'needsApproval' });

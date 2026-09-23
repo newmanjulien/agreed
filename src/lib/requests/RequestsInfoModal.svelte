@@ -55,10 +55,28 @@
 					</h3>
 
 					<p class="mt-1.5 text-[14.5px] leading-[1.45] text-muted">
-						You need approval for some changes, and some can’t be accepted at all.
+						You need approval for some changes, and
+						<span class="text-danger">some can’t be accepted at all.</span>
 					</p>
 				</div>
 			</li>
 		</ol>
+
+		<label class="mt-6 flex items-center gap-2 text-[14px] text-ink">
+		<span class="relative flex size-4 items-center justify-center">
+			<input
+				type="checkbox"
+				class="peer size-4 appearance-none rounded-sm border border-line checked:bg-muted"
+			/>
+
+			<span
+				class="pointer-events-none absolute hidden text-[11px] leading-none text-white peer-checked:block"
+			>
+				✓
+			</span>
+		</span>
+
+		<span>Don't show guide</span>
+	</label>
 	</div>
 </FullHeightModalShell>
