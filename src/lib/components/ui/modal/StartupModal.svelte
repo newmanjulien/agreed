@@ -18,7 +18,7 @@
 	<div class="flex min-h-full flex-col justify-between gap-6 pt-1">
 		<div class="space-y-6">
 			<p class="text-[15px] leading-[1.45] text-ink-muted">
-				Agreed helps sales reps understand, negotiate and close contrats on your own.
+				Agreed helps sales reps understand, negotiate and close sales contracts on your own.
 			</p>
 
 			<div>
