@@ -1,13 +1,14 @@
 <script lang="ts">
-	import RequestUploadPage from '$lib/requests/RequestUploadPage.svelte';
+	import ContractApp from '$lib/components/document/ContractApp.svelte';
+	import { contract } from '$lib/content/contract/contract';
 </script>
 
 <svelte:head>
-	<title>Requests | Agreed</title>
+	<title>Agreed</title>
 	<meta
 		name="description"
-		content="Upload requested changes and prepare a response for the buyer."
+		content="Let sales reps understand, negotiate and close contracts on their own."
 	/>
 </svelte:head>
 
-<RequestUploadPage />
+<ContractApp {contract} />
