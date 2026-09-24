@@ -14,11 +14,11 @@
 	}
 </script>
 
-<FullHeightModalShell title="How agreed works" {onClose}>
+<FullHeightModalShell title="How Agreed works" {onClose}>
 	<div class="flex min-h-full flex-col justify-between gap-6 pt-1">
 		<div class="space-y-6">
 			<p class="text-[15px] leading-[1.45] text-ink-muted">
-				agreed helps you partner more easily. It's a contract that explains itself and lets you make safe edits.
+				Agreed helps sales reps understand, negotiate and close contrats on your own.
 			</p>
 
 			<div>
@@ -28,14 +28,14 @@
 
 						<div class="pb-7">
 							<h3 class="text-[15px] leading-tight font-medium text-ink">
-								Choose what works for you
+								Open a clause
 							</h3>
 
 							<p class="mt-1.5 text-[15px] leading-[1.45] text-ink-muted">
 								<span class="clause-highlight bg-clause-editable-highlight">
-									Green clauses have options.
+									Green clauses have details.
 								</span>
-								Click to select from one of the alternatives.
+								Click to open up an explanation of the clause.
 							</p>
 						</div>
 					</li>
@@ -45,14 +45,11 @@
 
 						<div class="pb-7">
 							<h3 class="text-[15px] leading-tight font-medium text-ink">
-								Understand what is already settled
+								Understand the clause
 							</h3>
 
 							<p class="mt-1.5 text-[15px] leading-[1.45] text-ink-muted">
-								<span class="clause-highlight bg-clause-informational-highlight">
-									Grey clauses are not flexible.
-								</span>
-								Click to see a plain-language explanation of why the clauses are important.
+								All green clauses have a plain English explanation of what the clause means.
 							</p>
 						</div>
 					</li>
@@ -62,12 +59,11 @@
 
 						<div>
 							<h3 class="text-[15px] leading-tight font-medium text-ink">
-								Suggest a different approach
+								Negotiate the clause
 							</h3>
 
 							<p class="mt-1.5 text-[15px] leading-[1.45] text-ink-muted">
-								For any other wording, propose an alternative by
-								<span class="selection-highlight">selecting the text.</span>
+								Some clauses include information on how to negotiate the clause with buyers.
 							</p>
 						</div>
 					</li>
